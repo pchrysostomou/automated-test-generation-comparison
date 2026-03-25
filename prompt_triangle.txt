@@ -1,0 +1,66 @@
+You are a Java testing assistant.
+Given the following Java class, generate a JUnit 4 test suite in Java 11 syntax.
+The tests must compile with Java 11 and use org.junit.Assert.
+
+Class under test:
+----- BEGIN CLASS -----
+public class Triangle {
+
+    static final int INVALID = 0;
+    static final int SCALENE = 1;
+    static final int EQUILATERAL = 2;
+    static final int ISOSCELES = 3;
+
+    public static int classifyTriangle(int a, int b, int c) {
+
+        delay();
+
+        // Sort the sides so that a <= b <= c
+        if (a > b) {
+            int tmp = a;
+            a = b;
+            b = tmp;
+        }
+
+        if (a > c) {
+            int tmp = a;
+            a = c;
+            c = tmp;
+        }
+
+        if (b > c) {
+            int tmp = b;
+            b = c;
+            c = tmp;
+        }
+
+        if (a + b <= c) {
+            return INVALID;
+        } else if (a == b && b == c) {
+            return EQUILATERAL;
+        } else if (a == b || b == c) {
+            return ISOSCELES;
+        } else {
+            return SCALENE;
+        }
+
+    }
+
+    private static void delay() {
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+
+        }
+    }
+
+}
+----- END CLASS -----
+
+Requirements:
+- Put all tests in a single public class named TriangleLMTest.
+- Do not include any package declaration.
+- Use only JUnit 4 annotations (@Test) and assertions (assertEquals, etc.).
+- Do not use any external libraries besides JUnit and the Java standard library.
+- Aim to cover as many branches of the classify method as possible.
+- The code must be valid Java 11.

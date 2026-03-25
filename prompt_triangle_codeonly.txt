@@ -1,0 +1,75 @@
+You are a Java code generator.
+
+TASK:
+Generate ONLY valid Java 11 source code for a JUnit 4 test suite for the Triangle class below.
+
+IMPORTANT CONSTRAINTS:
+- OUTPUT ONLY JAVA CODE.
+- NO natural language explanation.
+- NO markdown.
+- NO backticks.
+- The first non-empty line of your answer MUST be an import statement.
+- Do NOT write comments in English. Only Java code is allowed.
+
+Triangle class:
+----- BEGIN CLASS -----
+public class Triangle {
+
+    static final int INVALID = 0;
+    static final int SCALENE = 1;
+    static final int EQUILATERAL = 2;
+    static final int ISOSCELES = 3;
+
+    public static int classifyTriangle(int a, int b, int c) {
+
+        delay();
+
+        // Sort the sides so that a <= b <= c
+        if (a > b) {
+            int tmp = a;
+            a = b;
+            b = tmp;
+        }
+
+        if (a > c) {
+            int tmp = a;
+            a = c;
+            c = tmp;
+        }
+
+        if (b > c) {
+            int tmp = b;
+            b = c;
+            c = tmp;
+        }
+
+        if (a + b <= c) {
+            return INVALID;
+        } else if (a == b && b == c) {
+            return EQUILATERAL;
+        } else if (a == b || b == c) {
+            return ISOSCELES;
+        } else {
+            return SCALENE;
+        }
+
+    }
+
+    private static void delay() {
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+
+        }
+    }
+
+}
+----- END CLASS -----
+
+REQUIREMENTS FOR THE TEST SUITE:
+- Single public test class named TriangleLMTest.
+- No package declaration.
+- Use JUnit 4: import org.junit.Test; and static imports from org.junit.Assert.
+- Use @Test annotations.
+- Aim to cover all branches of classify().
+- Use simple integer arguments to the Triangle constructor.
